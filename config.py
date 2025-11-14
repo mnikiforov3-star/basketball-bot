@@ -1,5 +1,5 @@
-BOT_TOKEN = "123456:ABC..."
-CHAT_ID   = -1001234567890  # свой ID или группы
+BOT_TOKEN = "8402324978:AAE2f8digGOjfo_xW3GiFwZLYtkjsb9OaHE"
+CHAT_ID   =  533835806  # свой ID или группы
 
 # Flashscore не требует ключа, но можно использовать прокси/headers
 HEADERS = {
