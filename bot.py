@@ -1,19 +1,26 @@
+# 1. ИМПОРТЫ (добавляем сюда)
+import config
+from utils import fetch_odds, kelly_stake, log, LEAGUE_SLUGS
 from telegram import Bot
-import config, parser, analyzer, datetime as dt
 
-bot = Bot(token=config.BOT_TOKEN)
+# 2. ОСНОВНОЙ КОД
+bot = Bot(config.BOT_TOKEN)
 
 def job():
-    matches = parser.get_today_home_matches()
+    matches = parser.get_matches()
     for m in matches:
-        prob, score = analyzer.predict_q1(m["home"], m["away"])
-        text = f"""🏀 <b>{m['league']}</b>
-📍 <b>{m['home']} – {m['away']}</b> (дома)
-💰 Кэф: {m['odds']}
-🎯 1-я четверть: <b>{m['home']}</b> победит с вероятностью {prob:.1%}
-📊 Пример счёт: {score}
-        """
-        bot.send_message(chat_id=config.CHAT_ID, text=text, parse_mode="HTML")
+        # пример использования функций из utils
+        odds   = fetch_odds(m["home"], m["away"])
+        prob   = 0.65                       # заглушка
+        stake  = kelly_stake(prob, odds)
+        log(f"{m['home']} odds={odds} stake={stake:.2f}")
+
+        text = f"""🏀 {m['liga']}
+{m['home']} – {m['away']} (дома)
+Коэффициент: {odds}
+Вероятность: {prob:.1%}
+Kelly-ставка: {stake:.1%} банка"""
+        bot.send_message(chat_id=config.CHAT_ID, text=text)
 
 if __name__ == "__main__":
     job()
