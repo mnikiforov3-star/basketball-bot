@@ -1,0 +1,8 @@
+python-telegram-bot==20.7
+requests
+beautifulsoup4
+lxml
+pandas
+numpy
+scikit-learn
+flashscore-parser @ git+https://github.com/yourname/flashscore-parser.git
