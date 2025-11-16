@@ -1,4 +1,4 @@
-name: Deploy to PythonAnywhere
+name: Full Deploy to PythonAnywhere
 on:
   push:
     branches: [ main ]
@@ -8,10 +8,16 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
-      - name: Reload PythonAnywhere Web App
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      
+      - name: Run tests
+        run: python manage.py test  # для Django
+      
+      - name: Reload app
         run: |
           curl -X POST \
-            https://www.pythonanywhere.com/api/v0/user/Mikhail55/webapps/Mikhail55.pythonanywhere.com/reload/ \
-            -H "Authorization: Token ${TOKEN}"
-        env:
-          TOKEN: ${{ secrets.PYTHONANYWHERE_API_TOKEN }}
+            https://www.pythonanywhere.com/api/v0/user/${{ secrets.PA_USER }}/webapps/${{ secrets.PA_APP }}/reload/ \
+            -H "Authorization: Token ${{ secrets.PA_TOKEN }}"
