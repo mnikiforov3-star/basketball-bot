@@ -7,5 +7,5 @@ HEADERS = {
 }
 
 # Дополнительные API (опционально)
-ODDS_API_KEY = "ваш_ключ_oddsapi"  # https://the-odds-api.com/
+ODDS_API_KEY = "15513632dcd3ff10634cb651a525dd8e"  # https://the-odds-api.com/
 NEWS_API_KEY = "ваш_ключ_newsapi"  # https://newsapi.org/
