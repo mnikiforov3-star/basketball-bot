@@ -39,13 +39,13 @@ def get_injuries_flashscore(team_name):
 
 
 # 4. Парсим реальные коэффициенты с the-odds-api (500 запросов/мес бесплатно)
-ODDS_API_KEY = "ВСТАВЬТЕ_КЛЮЧ"   # берём на https://the-odds-api.com/
+ODDS_API_KEY = "15513632dcd3ff10634cb651a525dd8e"   # берём на https://the-odds-api.com/
 ODDS_URL = "https://api.the-odds-api.com/v4/sports/basketball_euroleague/odds"
 
 
 def fetch_odds(home, away, regions="eu", markets="h2h"):
     """Возвращает коэфф. home_win для домашней команды"""
-    if ODDS_API_KEY == "ВСТАВЬТЕ_КЛЮЧ":
+    if ODDS_API_KEY == "15513632dcd3ff10634cb651a525dd8e":
         return 1.25  # заглушка
     params = {"apiKey": ODDS_API_KEY, "regions": regions, "markets": markets}
     r = requests.get(ODDS_URL, params=params, timeout=15)
